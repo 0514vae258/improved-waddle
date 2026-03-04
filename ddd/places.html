@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全部分享 - 农大东校区漫游指南</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        agri: '#4CAF50',
+                        sun: '#FF9800',
+                        dark: '#333438',
+                    }
+                }
+            }
+        }
+        function filterCards(category) {
+            const filterButtons = document.querySelectorAll('#filterButtons button');
+            filterButtons.forEach(btn => {
+                btn.classList.remove('bg-agri', 'text-white');
+                btn.classList.add('bg-white', 'text-gray-700', 'shadow-sm');
+                if (btn.textContent.includes(getCategoryName(category))) {
+                    btn.classList.remove('bg-white', 'text-gray-700', 'shadow-sm');
+                    btn.classList.add('bg-agri', 'text-white');
+                }
+            });
+
+            
+            const allCards = document.querySelectorAll('.card-item');
+            allCards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+
+        
+        function getCategoryName(category) {
+            const map = {
+                'all': '全部',
+                'canteen': '食堂美食',
+                'study': '学习空间',
+                'scenery': '校园美景',
+                'life': '周边生活',
+                'sports': '运动健身'
+            };
+            return map[category] || '全部';
+        }
+
+        
+        function searchCards(keyword) {
+            if (!keyword) {
+                filterCards('all'); 
+                return;
+            }
+            
+            const allCards = document.querySelectorAll('.card-item');
+            allCards.forEach(card => {
+                const cardText = card.textContent.toLowerCase();
+                if (cardText.includes(keyword.toLowerCase())) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+           
+            const filterButtons = document.querySelectorAll('#filterButtons button');
+            filterButtons.forEach(btn => {
+                btn.classList.remove('bg-agri', 'text-white');
+                btn.classList.add('bg-white', 'text-gray-700', 'shadow-sm');
+            });
+        }
+
+        
+        function toggleMobileMenu() {
+        const menu = document.getElementById('mobileMenu');
+         menu.classList.toggle('hidden');
+        }
+    </script>
+    <style>
+       
+        .clickable {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-dark">
+  
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <i class="fa-solid fa-leaf text-agri text-2xl mr-2"></i>
+                    <span class="font-bold text-xl tracking-tight">农大东校区漫游指南</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="flex items-center space-x-6">
+                        
+                        <a href="index.html" class="font-medium hover:text-agri transition-colors clickable">首页</a>
+                        <a href="places.html" class="font-medium text-agri border-b-2 border-agri pb-1 clickable">全部分享</a>
+                        <a href="about.html" class="font-medium hover:text-agri transition-colors clickable">关于我们</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    
+                    <button class="text-gray-400 hover:text-gray-600 clickable" onclick="toggleMobileMenu()">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    
+    <header class="bg-white py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h1 class="text-4xl font-bold">校园生活全地图</h1>
+            <p class="mt-2 text-gray-600 max-w-3xl">从食堂到图书馆，从周边到夜生活，这里收录了农大东区所有你可能需要的角落。</p>
+        </div>
+    </header>
+
+   
+    <section class="py-4 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+                <div class="flex flex-wrap gap-2" id="filterButtons">
+                    <button class="px-4 py-2 rounded-full bg-agri text-white font-medium hover:bg-agri/90 transition-colors clickable" onclick="filterCards('all')">全部</button>
+                    <button class="px-4 py-2 rounded-full bg-white shadow-sm hover:bg-gray-50 transition-colors hover:text-agri clickable" onclick="filterCards('canteen')">食堂美食</button>
+                    <button class="px-4 py-2 rounded-full bg-white shadow-sm hover:bg-gray-50 transition-colors hover:text-agri clickable" onclick="filterCards('study')">学习空间</button>
+                    <button class="px-4 py-2 rounded-full bg-white shadow-sm hover:bg-gray-50 transition-colors hover:text-agri clickable" onclick="filterCards('scenery')">校园美景</button>
+                    <button class="px-4 py-2 rounded-full bg-white shadow-sm hover:bg-gray-50 transition-colors hover:text-agri clickable" onclick="filterCards('life')">周边生活</button>
+                    <button class="px-4 py-2 rounded-full bg-white shadow-sm hover:bg-gray-50 transition-colors hover:text-agri clickable" onclick="filterCards('sports')">运动健身</button>
+                </div>
+                
+                <div class="w-full md:w-auto">
+                    <div class="relative">
+                        <input type="text" placeholder="搜索地点/关键词..." class="w-full md:w-64 px-4 py-2 pl-10 rounded-full border border-gray-200 focus:outline-none focus:ring-2 focus:ring-agri/50 focus:border-agri clickable" onkeydown="if(event.key==='Enter')searchCards(this.value)">
+                        <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 clickable" onclick="searchCards(document.querySelector('input').value)"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <main class="py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="cardContainer">
+              
+                <a href="公一.html" class="block bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden clickable card-item" data-category="canteen">
+                    <img src="公一.jpg" alt="农大食堂" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">公一食堂</h3>
+                        <p class="text-gray-600 mb-4">东区性价比最高的食堂，麻辣烫和肉蛋堡是必尝特色。西侧入口还有网红面包坊。</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> 公主楼楼下</span>
+                            <span class="text-agri hover:text-agri/80 font-medium">查看详情 <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        </div>
+                    </div>
+                </a>
+                <a href="公二.html" class="block bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden clickable card-item" data-category="canteen">
+                    <img src="公二.jpg" alt="农大食堂" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">公二食堂</h3>
+                        <p class="text-gray-600 mb-4">美食较多，强烈推荐漏奶华，猪脚饭以及咖喱鸡排饭，唯二缺点是饭点时人比较多以及价格略贵。</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> 公一楼上</span>
+                            <span class="text-agri hover:text-agri/80 font-medium">查看详情 <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        </div>
+                    </div>
+                </a>
+                <a href="公三.html" class="block bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden clickable card-item" data-category="canteen">
+                    <img src="公三.jpg" alt="农大食堂" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">公三食堂</h3>
+                        <p class="text-gray-600 mb-4">此食堂本人涉猎较少，经同学推荐卤肉饭和羊肉汤为地牢白月光，公三胜在离图书馆和教学楼很近。</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> 图书馆旁</span>
+                            <span class="text-agri hover:text-agri/80 font-medium">查看详情 <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        </div>
+                    </div>
+                </a>
+               <a href="公四.html" class="block bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden clickable card-item" data-category="canteen">
+                    <img src="公四.jpg" alt="农大食堂" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">公四食堂（研一）</h3>
+                        <p class="text-gray-600 mb-4">炫酷智慧餐厅，各色美食按需选择，实时显示营养成分表，食堂高科技，农大自研大豆冰激淋和常驻爆款海肠捞饭为必吃美食。</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i>二号公寓一层</span>
+                            <span class="text-agri hover:text-agri/80 font-medium">查看详情 <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        </div>
+                    </div>
+                </a>
+                 </a><a href="风味.html" class="block bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden clickable card-item" data-category="canteen">
+                    <img src="风味.jpg" alt="农大食堂" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">风味餐厅（研二）</h3>
+                        <p class="text-gray-600 mb-4">汇聚五湖四海风味，营业时间长，食堂北侧的旋转小火锅，同时解锁火锅与烤肉，南侧还有咖啡厅，也是休闲放松的安逸角落。麻辣香锅和滑蛋饭简直夯爆了，推荐！</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i>二号公寓二层</span>
+                            <span class="text-agri hover:text-agri/80 font-medium">查看详情 <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        </div>
+                    </div>
+                </a>
+               
+                    <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden clickable card-item" data-category="study">
+                    <img src="图书馆 (2).jpg" alt="农大图书馆" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">图书馆</h3>
+                        <p class="text-gray-600 mb-4">东区学习氛围最浓的地方，需提前预约。一楼包含自主阅览室以及总服务台，二楼有个人学习区，想要安静学习且有些社恐的同学推荐在这里自习。二楼还有小组学习空间、研讨室以及交流空间等。二楼以上就是各个图书阅览区，也提供座位自习。</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> 第三教学楼旁</span>
+                        </div>
+                    </div>
+                </div>
+                    <div class="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden clickable card-item" data-category="study">
+                    <img src="校园风景.jpg" alt="教学楼" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">教学楼</h3>
+                        <p class="text-gray-600 mb-4">三教有自习区，也提供电源插座。一教和二教在不同时段都有空闲教室，可以进去自习或者背书，也有几个教室是可以通宵自习的，在期末周前需要复习的同学可以去自行探索。</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> 第三教学楼</span>
+                        </div>
+                    </div>
+                </div>
+            
+                
+               
+                <div class="block bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden clickable card-item" data-category="sports">
+                    <img src="操场.jpg" alt="农大操场" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">农大操场</h3>
+                        <p class="text-gray-600 mb-4">足够大的足球场，四周跑道，是同学们校园跑的场所，也是运动健身的好去处。</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> 体育馆旁</span>
+                        </div>
+                    </div>
+            </div>
+             <div class="block bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden clickable card-item" data-category="sports">
+                    <img src="体育馆.jpg" alt="体育馆" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">体育馆</h3>
+                        <p class="text-gray-600 mb-4">为同学们提供室内体育场所，有篮球场、羽毛球场、乒乓球桌以及琴房等，平常社团排练等等也可在里面进行，馆内还设有健身房满足同学们的健身需求。</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> 图书馆前</span>
+                        </div>
+                    </div>
+            </div>
+            <div class="block bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden clickable card-item" data-category="scenery">
+                    <img src="老水塔.jpg" alt="老水塔" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">老水塔</h3>
+                        <p class="text-gray-600 mb-4">老水塔正在焕发新生，与蔡凌豪老师设计的圆仓结合成为新的校园景观。同学们平常可以在这里约会或是出声读书，不失为一个好去处。</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> 旧图书馆旁</span>
+                        </div>
+                    </div>
+            </div>
+             <div class="block bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden clickable card-item" data-category="scenery">
+                    <img src="圆仓.jpg" alt="圆仓" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">圆仓环廊</h3>
+                        <p class="text-gray-600 mb-4">新修建的圆仓环廊在晚上时灯光特别美，可以约上三五好友在这里畅聊玩耍。</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> 旧图书馆旁</span>
+                        </div>
+                    </div>
+            </div>
+            <div class="block bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden clickable card-item" data-category="scenery">
+                    <img src="校园风景2.jpg" alt="风景" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">小猫咪</h3>
+                        <p class="text-gray-600 mb-4">毛茸茸的小猫永远是治愈坏心情的良药，如果感到不开心或者疲惫的话，那就请去校园探索吧，说不定会随机刷新出一只可爱的猫咪，也有可能刷新出两只哦。</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> 随机出现^^</span>
+                        </div>
+                    </div>
+            </div>
+            <div class="block bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden clickable card-item" data-category="life">
+                    <img src="新辰里.jpg" alt="新辰里" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">新辰里</h3>
+                        <p class="text-gray-600 mb-4">逛街、美食、看电影一应俱全，最近全新升级的物美超市可以买到很多小吃零食，商场里还有很多美食，个人非常推荐商场一层的沙胆彪牛肉火锅。总而言之，是周末放松解压的最佳去处。</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> 学校北门外</span>
+                        </div>
+                    </div>
+            </div>
+            <div class="block bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden clickable card-item" data-category="life">
+                    <img src="jm.jpg" alt="jm" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">金码大厦</h3>
+                        <p class="text-gray-600 mb-4">这里是一个集吃喝玩乐为一体的青年潮玩聚集地，有电竞、动漫、音乐等潮流元素，各种谷子店，简直是二次元的天堂。</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> 六道口地铁站旁</span>
+                        </div>
+                    </div>
+            </div>
+            <div class="block bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden clickable card-item" data-category="life">
+                    <img src="wdk.jpg" alt="wdk" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">五道口购物中心</h3>
+                        <p class="text-gray-600 mb-4">大家平常想去近一点的地方逛街买衣服等等就可以去五道口购物中心，骑自行车二十分钟就能到，这里有离我们学校最近的泡泡玛特店，喜欢盲盒的同学可以看过来。而且，这里的餐厅也相当不错，有川菜日料等等，吃货可冲。</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i> 六道口地铁站旁</span>
+                        </div>
+                    </div>
+            </div>
+             <div class="block bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow overflow-hidden clickable card-item" data-category="life">
+                    <img src="鸟巢.jpg" alt="鸟巢" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">鸟巢</h3>
+                        <p class="text-gray-600 mb-4">我们学校离鸟巢相当近，坐地铁两站即可到达，大家可以去鸟巢附近吃一些小吃，喜欢看演唱会的同学也很方便了。什么？你说抢不到票，没关系，鸟巢音响设备很好，站在场外也可以听到，还算清晰。</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500"><i class="fa-solid fa-location-dot mr-1"></i>国家体育中心</span>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer class="bg-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center">
+                        <i class="fa-solid fa-leaf text-agri text-2xl mr-2"></i>
+                        <span class="font-bold text-xl">农大东校漫游指南</span>
+                    </div>
+                    <p class="mt-2 text-gray-400">为每一位农大学子定制的生活地图</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="font-semibold text-lg mb-4">导航</h3>
+                        <ul class="space-y-2">
+                            <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors">首页</a></li>
+                            <li><a href="places.html" class="text-gray-400 hover:text-white transition-colors">全部分享</a></li>
+                            <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors">关于我们</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg mb-4">关注我们</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-weixin text-xl"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-github text-xl"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-white transition-colors"><i class="fa-brands fa-instagram text-xl"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-500">
+                © 2026 农大东校漫游指南. 保留所有权利。
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

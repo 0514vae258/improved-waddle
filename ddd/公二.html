@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中农美食地图 - 公二食堂</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Microsoft Yahei", sans-serif; }
+        body { background-color: #f5f5f0; color: #333; line-height: 1.6; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .nav { background-color: #2e7d32; padding: 10px 0; margin-bottom: 25px; border-radius: 8px; }
+        .nav-list { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+        .nav-item a { color: #fff; text-decoration: none; padding: 6px 12px; border-radius: 4px; background-color: #4caf50; }
+        .nav-item a.active { background-color: #1b5e20; font-weight: bold; }
+        header { text-align: center; margin-bottom: 25px; }
+        .logo { font-size: 2.2rem; font-weight: bold; color: #2e7d32; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .logo::before { content: "🐉"; font-size: 2.4rem; }
+        .subtitle { font-size: 1.1rem; color: #555; margin-top: 8px; }
+        .section { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow: hidden; }
+        .section-title { background: #2e7d32; color: #fff; padding: 15px 20px; font-size: 1.5rem; font-weight: bold; }
+        .food-list { padding: 20px; list-style: none; }
+        .food-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #eee; }
+        .food-item:last-child { border-bottom: none; }
+        .food-name { font-weight: 600; color: #2e7d32; flex: 1; }
+        .food-desc { color: #666; flex: 2; text-align: right; padding-left: 20px; }
+        footer { text-align: center; margin-top: 30px; color: #888; font-size: 0.9rem; }
+        @media (max-width: 600px) {
+            .food-item { flex-direction: column; }
+            .food-desc { text-align: left; padding-left: 0; margin-top: 5px; }
+            .nav-list { gap: 8px; }
+            .nav-item a { padding: 5px 10px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="风味.html">风味</a ></li>
+                <li class="nav-item"><a href="公四.html">公四</a ></li>
+                <li class="nav-item"><a href="公三.html">公三</a ></li>
+                <li class="nav-item"><a href="公二.html" class="active">公二</a ></li>
+                <li class="nav-item"><a href="公一.html">公一</a ></li>
+            </ul>
+        </nav>
+
+        <header>
+            <div class="logo">中农美食地图（东校区）</div>
+            <div class="subtitle">公二食堂篇</div>
+        </header>
+
+        <div class="section">
+            <div class="section-title">公二</div>
+            <ul class="food-list">
+                <li class="food-item"><span class="food-name">日式咖喱猪排</span><span class="food-desc">猪排or鸡排都很好吃 本人去公二吃过最多次的</span></li>
+                <li class="food-item"><span class="food-name">咖喱鸡肉焗饭</span><span class="food-desc">焗饭都很好吃 最喜欢这个有土豆的</span></li>
+                <li class="food-item"><span class="food-name">鸡汤素面</span><span class="food-desc">公二白月光，早餐就有，很好吃</span></li>
+                <li class="food-item"><span class="food-name">老麻抄手</span><span class="food-desc">鸡汤和麻辣的都还不错</span></li>
+                <li class="food-item"><span class="food-name">佛跳墙/北京烤鸭</span><span class="food-desc">尝鲜但值得</span></li>
+                <li class="food-item"><span class="food-name">大阪烧</span><span class="food-desc">时不时吃一下还可以</span></li>
+                <li class="food-item"><span class="food-name">漏奶华</span><span class="food-desc">公二高大上的一种体现（</span></li>
+                <li class="food-item"><span class="food-name">各种酸奶/甜点</span><span class="food-desc">都还蛮好喝的！还很好看！</span></li>
+                <li class="food-item"><span class="food-name">酸汤小火锅</span><span class="food-desc">最伟大的发明 单独/和朋友都很适合</span></li>
+                <li class="food-item"><span class="food-name">韩式拌饭</span><span class="food-desc">五花肉的</span></li>
+                <li class="food-item"><span class="food-name">港式云吞面</span><span class="food-desc">鲜鲜的 面很劲道</span></li>
+                <li class="food-item"><span class="food-name">烤鱼饭</span><span class="food-desc">烤鱼饭叔叔超级好！青柠/香辣都可以</span></li>
+                <li class="food-item"><span class="food-name">冬阴功河粉</span><span class="food-desc">泰味足足~记得有虾来着</span></li>
+                <li class="food-item"><span class="food-name">各种砂锅</span><span class="food-desc">任何一个砂锅加丸子都很足够</span></li>
+                <li class="food-item"><span class="food-name">自选菜</span><span class="food-desc">每一个菜都很不错啊！记得拿米饭，谨慎尝试火鸡面，很辣</span></li>
+            </ul>
+        </div>
+
+        <footer>参考网友建议</footer>
+    </div>
+</body>
+</html>
