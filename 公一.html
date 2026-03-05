@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中农美食地图 - 公一食堂</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Microsoft Yahei", sans-serif; }
+        body { background-color: #f5f5f0; color: #333; line-height: 1.6; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .nav { background-color: #2e7d32; padding: 10px 0; margin-bottom: 25px; border-radius: 8px; }
+        .nav-list { list-style: none; display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; }
+        .nav-item a { color: #fff; text-decoration: none; padding: 6px 12px; border-radius: 4px; background-color: #4caf50; }
+        .nav-item a.active { background-color: #1b5e20; font-weight: bold; }
+        header { text-align: center; margin-bottom: 25px; }
+        .logo { font-size: 2.2rem; font-weight: bold; color: #2e7d32; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .logo::before { content: "🐉"; font-size: 2.4rem; }
+        .subtitle { font-size: 1.1rem; color: #555; margin-top: 8px; }
+        .section { background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow: hidden; }
+        .section-title { background: #2e7d32; color: #fff; padding: 15px 20px; font-size: 1.5rem; font-weight: bold; }
+        .food-list { padding: 20px; list-style: none; }
+        .food-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #eee; }
+        .food-item:last-child { border-bottom: none; }
+        .food-name { font-weight: 600; color: #2e7d32; flex: 1; }
+        .food-desc { color: #666; flex: 2; text-align: right; padding-left: 20px; }
+        footer { text-align: center; margin-top: 30px; color: #888; font-size: 0.9rem; }
+        @media (max-width: 600px) {
+            .food-item { flex-direction: column; }
+            .food-desc { text-align: left; padding-left: 0; margin-top: 5px; }
+            .nav-list { gap: 8px; }
+            .nav-item a { padding: 5px 10px; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="风味.html">风味</a ></li>
+                <li class="nav-item"><a href="公四.html">公四</a ></li>
+                <li class="nav-item"><a href="公三.html">公三</a ></li>
+                <li class="nav-item"><a href="公二.html">公二</a ></li>
+                <li class="nav-item"><a href="公一.html" class="active">公一</a ></li>
+            </ul>
+        </nav>
+
+        <header>
+            <div class="logo">中农美食地图（东校区）</div>
+            <div class="subtitle">公一食堂篇</div>
+        </header>
+
+        <div class="section">
+            <div class="section-title">公一</div>
+            <ul class="food-list">
+                <li class="food-item"><span class="food-name">麻辣烫！！</span><span class="food-desc">为麻辣烫叔疯狂打call，叔叔人特别好，推荐番茄汤加麻酱，夯爆了！！！</span></li>
+                <li class="food-item"><span class="food-name">铁板牛肉/石锅拌饭/鸡公煲</span><span class="food-desc">这个窗口都不错</span></li>
+                <li class="food-item"><span class="food-name">焖菜</span><span class="food-desc">要早一点去才能吃到，都很好吃and健康</span></li>
+                <li class="food-item"><span class="food-name">椒麻鸡拌面</span><span class="food-desc">面一般般椒麻鸡挺好吃</span></li>
+                <li class="food-item"><span class="food-name">鸡蛋猪肉肠粉</span><span class="food-desc">挺好吃的</span></li>
+                <li class="food-item"><span class="food-name">手抓饼（鸡排）</span><span class="food-desc">早餐必备</span></li>
+                <li class="food-item"><span class="food-name">面包片加鸡肉饼</span><span class="food-desc">超级完美的搭配（自认为）可以配一杯豆浆</span></li>
+                <li class="food-item"><span class="food-name">烧饼夹里脊</span><span class="food-desc">早上外面餐车也有</span></li>
+                <li class="food-item"><span class="food-name">哈密瓜/西瓜</span><span class="food-desc">是切片的，比较便宜</span></li>
+                <li class="food-item"><span class="food-name">肉蛋堡</span><span class="food-desc">夯！</span></li>
+                <li class="food-item"><span class="food-name">瓦罐汤</span><span class="food-desc">非常好喝啊</span></li>
+                <li class="food-item"><span class="food-name">鸡丝凉面</span><span class="food-desc">夏天一进门就是 很清爽了</span></li>
+                <li class="food-item"><span class="food-name">米粉</span><span class="food-desc">红烧牛肉推荐</span></li>
+                <li class="food-item"><span class="food-name">卷饼</span><span class="food-desc">中午特别适合！买一个速回寝室吃完休息</span></li>
+                <li class="food-item"><span class="food-name">减脂窗口</span><span class="food-desc">健身的同学可以试试</span></li>
+            </ul>
+        </div>
+
+        <footer>参考网友建议</footer>
+    </div>
+</body>
+</html>
